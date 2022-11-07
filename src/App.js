@@ -1,12 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import { configureStore } from '@reduxjs/toolkit';
+import CakeContainer from './components/CakeContainer';
 
 
 
 
 
 const createStore = configureStore;
+
+
+//action
 
 const BUY_CAKE = "BUY_CAKE";
 
@@ -23,6 +27,9 @@ const initialState = {
     numOfCakes: 10
 };
 
+
+//reducer
+
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case BUY_CAKE: return{
@@ -33,6 +40,8 @@ const counterReducer = (state = initialState, action) => {
         default: return state
     }
 };
+
+//store
 
 const store = configureStore({reducer:counterReducer});
 console.log(store.getState(),"getting initial state");
@@ -47,18 +56,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <CakeContainer/>
       </header>
     </div>
   );

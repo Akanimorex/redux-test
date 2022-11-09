@@ -3,6 +3,8 @@ import './App.css';
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
 import CakeContainer from './components/CakeContainer';
+import { applyMiddleware } from '@reduxjs/toolkit';
+import { ReduxLoggerOptions } from 'redux-logger';
 
 
 
@@ -94,9 +96,9 @@ const rootReducer = combineReducers({
   iceCreamReducer:iceCreamReducer
 })
 
-const store = configureStore({reducer:rootReducer});
+const store = configureStore({reducer:rootReducer}, applyMiddleware(ReduxLoggerOptions));
 console.log(store.getState(),"getting initial state");
- const unsubscribe = store.subscribe(()=> console.log(store.getState(), "getting updated state"));
+ const unsubscribe = store.subscribe(()=>{console.log(store.getState(),"getting updated state")});
 store.dispatch(buyCake());
 store.dispatch(buyCake());
 store.dispatch(buyCake());

@@ -1,6 +1,13 @@
 import React from "react";
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
+import {  applyMiddleware } from "redux";
+import { ThunkMiddleware } from "redux-thunk";
+import axios from "axios";
+import thunk from "redux-thunk";
+
+
+
 
 
 const initialState = {
@@ -24,7 +31,7 @@ const fetchUserRequest = () =>{
 const fetchUserSuccess = () =>{
     return {
         type:FETCH_USERS_SUCCESS,
-        payload: users 
+        payload: users
     }
 };
 
@@ -63,5 +70,33 @@ const reducer = (state = initialState, action) => {
     }
 };
 
+const fetchUsers = () => {
+    return function (dispatch) {
+        dispatch(fetchUserRequest())
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then((response)=>{
+            // array of users
+            const users = response.data.map((user)=>user.id);
+            dispatch(fetchUserSuccess(users));
+        })
+        .catch((err)=>{
+            // error message
+            dispatch(fetchUserFailure(err.message))
+        })
+    }
+}
 
-const store = configureStore(reducer);
+
+const store = configureStore(reducer, applyMiddleware(thunk));
+store.subscribe(()=>{ console.log(store.getState())});
+store.dispatch(fetchUsers());
+
+
+const AsyncActions = ()=> {
+    return (
+        <h1>ASYNC SHIT</h1>
+    )
+};
+
+
+export default AsyncActions;

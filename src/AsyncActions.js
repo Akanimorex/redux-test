@@ -47,7 +47,8 @@ const reducer = (state = initialState, action) => {
         case FETCH_USERS_REQUEST:
             return {
                 ...state,
-                loading:true
+                loading:true,
+            
             }
         case FETCH_USERS_SUCCESS:
             return {
@@ -70,7 +71,7 @@ const reducer = (state = initialState, action) => {
 
 const fetchUsers = () => {
     return function (dispatch) {
-        dispatch(fetchUserRequest())
+        dispatch(fetchUserRequest());
         axios.get('https://jsonplaceholder.typicode.com/users')
         .then((response)=>{
             // array of users
@@ -79,12 +80,10 @@ const fetchUsers = () => {
         })
         .catch((err)=>{
             // error message
-            dispatch(fetchUserFailure(err.message))
+            dispatch(fetchUserFailure(err.message));
         })
     }
 };
-
-
 
 
 

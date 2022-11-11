@@ -2,10 +2,8 @@ import React from "react";
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
 import {  applyMiddleware } from "redux";
-import { ThunkMiddleware } from "redux-thunk";
 import axios from "axios";
 import thunk from "redux-thunk";
-
 
 
 
@@ -84,10 +82,13 @@ const fetchUsers = () => {
             dispatch(fetchUserFailure(err.message))
         })
     }
-}
+};
 
 
-const store = configureStore(reducer, applyMiddleware(thunk));
+
+
+
+const store = configureStore({reducer:reducer}, applyMiddleware(thunk));
 store.subscribe(()=>{ console.log(store.getState())});
 store.dispatch(fetchUsers());
 

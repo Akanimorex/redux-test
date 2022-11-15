@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cakeReducer from "./cake/cakeReducer";
+import rootReducer from "./rootReducer";
 
 
-const store = configureStore({reducer:cakeReducer});
+const store = configureStore({reducer:rootReducer});
 
 
 export default store;

@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import CakeContainer from './components/CakeContainer';
+import IceCreamContainer from './components/IceCreamContainer';
 import { Provider } from 'react-redux';
 import store  from './redux/store';
+
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <CakeContainer/>
+          <IceCreamContainer/>
         </header>
       </div>
     </Provider>

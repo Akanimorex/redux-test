@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const CakeContainer = () => {
 
-    const numOfCakes = useSelector(state=>state.numOfCakes);
+    const numOfCakes = useSelector(state=>state.cake.numOfCakes);
     const dispatch = useDispatch();
     
     return (
@@ -16,16 +16,5 @@ const CakeContainer = () => {
     )
 };
 
-const mapStateToProps = (state) => {
-    return {
-        numOfCakes: state.numOfCakes
-    }
-};
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        buyCake:() => dispatch(buyCake())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer);
+export default CakeContainer;

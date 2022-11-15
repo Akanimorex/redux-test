@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import CakeContainer from './components/CakeContainer';
 import IceCreamContainer from './components/IceCreamContainer';
+import BreadComponent from './components/BreadComponent';
 import { Provider } from 'react-redux';
 import store  from './redux/store';
 
@@ -14,6 +15,7 @@ function App() {
         <header className="App-header">
           <CakeContainer/>
           <IceCreamContainer/>
+          <BreadComponent/>
         </header>
       </div>
     </Provider>
